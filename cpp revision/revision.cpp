@@ -1,6 +1,13 @@
 #include <iostream>
 using namespace std;
 int main(){
+        int x,y;
+        cout<<endl<<"Enter first number";
+        cin>>x;
+        cout<<endl<<"ENter second number";
+        cin>>y;
+        int result=(x>y)?x:y;
+        cout<<"Greater value is:"<<result;
     int age;
     cout<<"Enter the age";
     // cout<<age; // this variable initialzes wd garbage value
@@ -27,6 +34,9 @@ int main(){
         break;
         default:
         cout<<"Invalid";
+       
+       
+
     }
     return 0;
 }
