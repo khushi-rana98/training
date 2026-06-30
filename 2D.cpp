@@ -27,4 +27,10 @@ int main(){
         cout<<a[i][j]<<" ";
         cout<<endl;
     }
+    cout<<endl<<"Elmnts at odd columns: ";
+     for(int i=0;i<r;i++){
+        for(int j=1;j<c;j+=2)
+        cout<<a[i][j]<<" ";
+        cout<<endl;
+    }
 }
