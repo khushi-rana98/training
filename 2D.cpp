@@ -34,7 +34,7 @@ void maxSum2(int b[][3]){
         }
         if(sum>=maxSum){
             row_no=i;
-            maxSum=sum;
+            maxSum=sum; 
         }
     }
     cout<<"maxSum: "<<maxSum<<" and the last row number is: "<<row_no;
@@ -77,5 +77,7 @@ int main(){
     sum(b);
     maxSum(b);
     maxSum2(b);
-    
+    // wave form
+    // spiral form
+
 }
