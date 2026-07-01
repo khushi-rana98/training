@@ -8,6 +8,38 @@ void sum(int b[][3]){
         cout<<sum<<" ";
     }
 }
+void maxSum(int b[][3]){
+    int maxSum=-1;
+    int row_no=-1;
+    for(int i=0;i<3;i++){
+        int sum=0;
+        for(int j=0;j<3;j++){
+            sum+=b[i][j];
+        }
+        if(sum>maxSum){
+            row_no=i;
+            maxSum=sum;
+        }
+    }
+    cout<<"maxSum: "<<maxSum<<" and the row number is: "<<row_no;
+}
+// method 2:
+void maxSum2(int b[][3]){
+    int maxSum=-1;
+    int row_no=-1;
+    for(int i=0;i<3;i++){
+        int sum=0;
+        for(int j=0;j<3;j++){
+            sum+=b[i][j];
+        }
+        if(sum>=maxSum){
+            row_no=i;
+            maxSum=sum;
+        }
+    }
+    cout<<"maxSum: "<<maxSum<<" and the last row number is: "<<row_no;
+}
+
 int main(){
 //     int r;
 //     cout<<"Enter the number of rows: ";
@@ -41,6 +73,9 @@ int main(){
 //         cout<<a[i][j]<<" ";
 //         cout<<endl;
     // }
-    int b[3][3]={1,2,3,4,5,6,7,8,9};
+    int b[3][3]={1,2,3,7,8,9,7,8,9};
     sum(b);
+    maxSum(b);
+    maxSum2(b);
+    
 }
