@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
 using namespace std;
-void swap(char &a, char &b){
-    char temp=a;
-    a=b;
-    b=temp;
-}
+// void swap(char &a, char &b){
+//     char temp=a;
+//     a=b;
+//     b=temp;
+// }
 string reverseString(string &s){
     int start=0;
     int end=s.length()-1;
