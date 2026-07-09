@@ -1,8 +1,9 @@
 #include <iostream>
 using namespace std;
 int main(){
-    // partitioning linked list
-    // 0s , 1s and 2s
+//    Partition List
+// Odd Even Linked List
+// Sort List
 //     Reverse Linked List
 // Find Middle Node
 // Detect Loop/Cycle
