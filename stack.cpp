@@ -7,5 +7,9 @@ int main(){
     s.push(3);
     s.push(21);
     cout<<"Top elmnt in the stack: "<<s.top();
+
+    // queue: printer.
+    // multiple messages 
+    
     return 0;
 }
