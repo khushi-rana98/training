@@ -44,6 +44,24 @@ vector<int>makeArrayBeautiful(vector<int>&arr){
     }
     return arr;
 }
+
+vector<string> stringManipulation(vector<string>a){
+    int n=a.size();
+    stack<string>st;
+    for(int i=0;i<n;i++){
+        if(!st.empty() && st.top()==a[i])
+        st.pop();
+        else
+        st.push(a[i]);
+    }
+    vector<string>ans(st.size());
+    int index=st.size()-1;
+    for(int i=index;i>=0;i--){
+        ans[i]=st.top();
+        st.pop();
+    }
+    return ans;
+}
 int main(){
     // reverse array
     int n;
