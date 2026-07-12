@@ -16,6 +16,19 @@ void reverse(vector<int>&a){
     }
     
 }
+void insertAtBottom(stack<int>&st){
+    int toinsert=3;
+    stack<int>temp;
+    while(!st.empty()){
+        temp.push(st.top());
+        st.pop();
+    }
+    temp.push(toinsert);
+    while(!temp.empty()){
+        st.push(temp.top());
+        temp.pop();
+    }
+}
 int main(){
     // reverse array
     int n;
