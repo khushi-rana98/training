@@ -29,6 +29,21 @@ void insertAtBottom(stack<int>&st){
         temp.pop();
     }
 }
+vector<int>makeArrayBeautiful(vector<int>&arr){
+    stack<int>s;
+    for(int i=0;i<arr.size();i++){
+        if(!s.empty() && ((arr[i]>=0 && s.top()<0)||(arr[i]<0 && s.top()>=0)))
+        s.pop();
+        else
+        s.push(arr[i]);
+    }
+    vector<int>ans(s.size());
+    for(int i=s.size()-1;i>=0;i--){
+        arr[i]=s.top();
+        s.pop();
+    }
+    return arr;
+}
 int main(){
     // reverse array
     int n;
