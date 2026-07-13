@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <queue>
 using namespace std;
 
 void reverse(vector<int>&a){
@@ -135,6 +136,18 @@ vector<string> stringManipulation(vector<string>a){
         st.pop();
     }
     return ans;
+}
+// reverese a queue 
+void reverese(queue<int>&q){
+    stack<int> st;
+    while(!q.empty()){
+        st.push(q.front());
+        q.pop();
+    }
+    while(!st.empty()){
+        q.push(st.top());
+        st.pop();
+    }
 }
 int main(){
     // reverse array
