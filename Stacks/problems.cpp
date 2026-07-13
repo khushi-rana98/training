@@ -16,6 +16,16 @@ void reverse(vector<int>&a){
     }
     
 }
+stack<int> insertAtBottom(stack<int> st, int x) {
+      if(st.empty()){st.push(x);
+          return st;
+      }
+      int top=st.top();
+      st.pop();
+      st=insertAtBottom(st,x);
+      st.push(top);
+    return st;
+}
 int minAddToMakeValid(string s) {
        stack<int>st;
        for(char c:s){
