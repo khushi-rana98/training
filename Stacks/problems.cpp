@@ -163,5 +163,10 @@ int main(){
     for(int i=0;i<a.size();i++){
         cout<<a[i]<<" ";
     }
+    // reverese queue using stack and recursion
+    // implmnt stack using queue and queues
+    // min stack
+    // reverese stack using recursion
+    // mid value of stack 
     return 0;
 }
