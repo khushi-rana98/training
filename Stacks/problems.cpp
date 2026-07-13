@@ -16,6 +16,26 @@ void reverse(vector<int>&a){
     }
     
 }
+  stack<int>delete_1(stack<int>st, int size, int count){
+        if(count==size/2){
+            st.pop();
+            return st;
+        }
+        int top=st.top();
+        st.pop();
+        st=delete_1(st,size,count+1);
+        st.push(top);
+        return st;
+    }
+    void deleteMid(stack<int>& s) {
+        int size=s.size();
+        int count=0;
+        s=delete_1(s,size,count);
+        while(!s.empty()){
+            cout<<s.top()<<" ";
+            s.pop();
+        }
+    }
 stack<int> insertAtBottom(stack<int> st, int x) {
       if(st.empty()){st.push(x);
           return st;
