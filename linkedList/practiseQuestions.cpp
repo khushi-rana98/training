@@ -30,4 +30,35 @@ public:
     }
     return slow;
     }
+// remove nth node from end of linked list
+    Node* removeNthFromEnd(Node* head, int n) {
+    int count = 0;
+    Node* temp = head;
+
+    while (temp) {
+        count++;
+        temp = temp->next;
+    }
+
+    count = count - n;
+
+    Node* prev = NULL;
+    Node* curr = head;
+
+    while (count--) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    if (curr == head) {
+        head = curr->next;
+        delete curr;
+    }
+    else {
+        prev->next = curr->next;
+        delete curr;
+    }
+
+    return head;
+}
 };
