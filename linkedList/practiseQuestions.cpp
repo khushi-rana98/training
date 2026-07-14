@@ -11,6 +11,7 @@ Node(int val){
 };
 class Solution{
 public:
+    // 1.reverse linked list
     Node* reverseRecursion(Node* curr, Node* prev){
         if(!curr){
             return prev;
@@ -18,5 +19,15 @@ public:
         Node* fut=curr->next;
         curr->next=prev;
         return reverseRecursion(fut,curr);
+    }
+    // 2.find mid of linked list
+    Node* middleNode(Node* head) {
+    Node* slow=head;
+    Node* fast=head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow;
     }
 };
