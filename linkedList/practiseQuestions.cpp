@@ -87,6 +87,7 @@ Node* removeNthFromEnd(Node* head, int n) {
 
     return head;
 }
+// delete every kth node
    Node* deleteK(Node* head, int K) {
        Node* prev=NULL;
        Node* curr=head;
