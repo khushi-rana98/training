@@ -149,6 +149,34 @@ void reverese(queue<int>&q){
         st.pop();
     }
 }
+// INTERLEAVE THE FIRST HALF OF THE QUEUE WITH THE SECOND HALF
+ void rearrangeQueue(queue<int> &q) {
+        // code here
+        stack<int>st;
+        int halfsize=q.size()/2;
+        for(int i=0;i<halfsize;i++){
+            st.push(q.front());
+            q.pop();
+        }
+        while(!st.empty()){
+            q.push(st.top());
+            st.pop();
+        }
+        for(int i=0;i<halfsize;i++){
+            q.push(q.front());
+            q.pop();
+        }
+        for(int i=0;i<halfsize;i++){
+            st.push(q.front());
+            q.pop();
+        }
+        while(!st.empty()){
+            q.push(st.top());
+            st.pop();
+            q.push(q.front());
+            q.pop();
+        }
+    }
 int main(){
     // reverse array
     int n;
