@@ -83,4 +83,10 @@ int height(Node* root) {
         if(!root) return 0;
         return root->data+sumBT(root->left)+sumBT(root->right);
     }
+    // maximum nodes in the binary tree
+    int countLeaves(Node* root){
+        if(!root) return 0;
+        if(!root->left && !root->right) return 1;
+        return countLeaves(root->left)+countLeaves(root->right);
+    }
 }; 
