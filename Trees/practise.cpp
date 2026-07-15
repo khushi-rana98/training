@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 // Trees-->binary Tree-- atmost 2 nodes-->0,1,2
 class Node{
