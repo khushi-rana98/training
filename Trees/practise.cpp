@@ -25,4 +25,6 @@ void preorder(Node* root){
     preorder(root->left);
     preorder(root->right);
 }
+// postorder is used for bottom-up processing: deletion
+// left->right->root
 }; 
