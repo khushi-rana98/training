@@ -73,4 +73,10 @@ int count(Node* root){
     if(!root) return 0;
     return 1+count(root->left)+count(root->right);
 }
+// height: no of edges
+int height(Node* root) {
+        // code here
+        if(!root) return -1;
+     return 1+max(height(root->left),height(root->right));   
+    }
 }; 
