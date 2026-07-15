@@ -79,4 +79,8 @@ int height(Node* root) {
         if(!root) return -1;
      return 1+max(height(root->left),height(root->right));   
     }
+     int sumBT(Node* root) {
+        if(!root) return 0;
+        return root->data+sumBT(root->left)+sumBT(root->right);
+    }
 }; 
