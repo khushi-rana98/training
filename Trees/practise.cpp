@@ -68,5 +68,9 @@ int height(Node* root){
     if(!root) return 0;
  return 1+max(height(root->left),height(root->right));
 }
-
+// count nodes of tree
+int count(Node* root){
+    if(!root) return 0;
+    return 1+count(root->left)+count(root->right);
+}
 }; 
