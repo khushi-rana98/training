@@ -27,4 +27,40 @@ void preorder(Node* root){
 }
 // postorder is used for bottom-up processing: deletion
 // left->right->root
+
+// level order traversal-->
+vector<vector<int>> levelOrder(Node* root) {
+    if (!root)
+        return {};
+
+    vector<vector<int>> ans;
+    queue<Node*> q;
+
+    q.push(root);
+
+    while (!q.empty()) {
+
+        int size = q.size();
+        vector<int> res;
+
+        for (int i = 0; i < size; i++) {
+
+            Node* temp = q.front();
+            q.pop();
+
+            res.push_back(temp->data);
+
+            if (temp->left)
+                q.push(temp->left);
+
+            if (temp->right)
+                q.push(temp->right);
+        }
+
+        ans.push_back(res);
+    }
+
+    return ans;
+}
+
 }; 
