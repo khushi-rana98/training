@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 using namespace std;
 // Trees-->binary Tree-- atmost 2 nodes-->0,1,2
 class Node{
@@ -62,6 +63,10 @@ vector<vector<int>> levelOrder(Node* root) {
     }
 
     return ans;
+}
+int height(Node* root){
+    if(!root) return 0;
+ return 1+max(height(root->left),height(root->right));
 }
 
 }; 
