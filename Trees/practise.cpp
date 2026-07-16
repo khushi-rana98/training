@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <stack>
 using namespace std;
 // Trees-->binary Tree-- atmost 2 nodes-->0,1,2
 class Node{
@@ -139,6 +140,61 @@ int height(Node* root) {
            st.pop();
            ans.push_back(temp->data);
        }
+       return ans;
+    }
+
+
+// boundary traveral of binary tree
+    bool isLeaf(Node* root){  // check if its leaf node
+      return (root && !root->left && !root->right);
+  }
+  
+//left boundary --maintaining the ans vector for left boundary--if left node exist updating it by it only else shift to right if it exists
+    void leftBoundary(Node* root, vector<int>&ans){
+     Node* curr=root->left;
+     while(curr){
+         if(!isLeaf(curr))
+         ans.push_back(curr->data);
+         if(curr->left) curr=curr->left;
+         else
+         curr=curr->right;
+     }
+    }
+    // leaf nodes-- root exists but not its left and right child nodes--"AND"
+    void leafNodes(Node* root, vector<int>&ans){
+        if(!root) return;
+        if(root && !root->left && !root->right) 
+        ans.push_back(root->data);
+        leafNodes(root->left,ans);
+        leafNodes(root->right,ans);
+    }
+  
+//   right boundary--> keep track of right boundary nodes in temp vector. if right child node exist updation goes wd it else shift left
+    void rightBoundary(Node*root, vector<int>&ans){
+        Node* curr=root->right;
+        vector<int>temp;
+        while(curr){
+            if(!isLeaf(curr))
+            temp.push_back(curr->data);
+            if(curr->right)
+            curr=curr->right;
+            else
+            curr=curr->left;
+            
+        }
+        for(int i=temp.size()-1;i>=0;i--){
+            ans.push_back(temp[i]);
+        }
+        
+    }
+    vector<int> boundaryTraversal(Node *root) {
+       if(!root) return {};
+       vector<int>ans;
+       if(!isLeaf(root)) 
+       ans.push_back(root->data);
+       leftBoundary(root,ans); //left boundary
+       leafNodes(root,ans); //leaf nodes
+       rightBoundary(root,ans); //right boundary
        return ans;
     }
 }; 
