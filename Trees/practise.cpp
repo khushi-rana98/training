@@ -89,4 +89,34 @@ int height(Node* root) {
         if(!root->left && !root->right) return 1;
         return countLeaves(root->left)+countLeaves(root->right);
     }
+    // zigzag traversal--
+     vector<int> zigZagTraversal(Node* root) {
+       if(!root) return {};
+       vector<int>ans;
+       queue<Node*>q;
+       q.push(root);
+       bool lefttoright=true;
+       while(!q.empty()){
+           int n=q.size();
+           vector<int>level(n);
+           int index=0;
+           for(int i=0;i<n;i++){
+               Node* temp=q.front();
+               q.pop();
+               if(lefttoright){
+                   index=i;
+               }
+               else
+               index=n-1-i; 
+               level[index]=temp->data;
+               if(temp->left) q.push(temp->left);
+               if(temp->right) q.push(temp->right);
+               
+           }
+           lefttoright=!lefttoright;
+           for(int x: level)
+          ans.push_back(x);
+       }
+       return ans;
+    }
 }; 
