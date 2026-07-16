@@ -119,4 +119,26 @@ int height(Node* root) {
        }
        return ans;
     }
+    // reversal level order traversal-- usiing stack and queue. queue to traverse level wise
+    // and to get the data in reverse . there comes the stack
+     vector<int> reverseLevelOrder(Node *root) {
+       if(!root) return {};
+       queue<Node*>q;
+       stack<Node*>st;
+       vector<int>ans;
+       q.push(root);
+       while(!q.empty()){
+           Node* temp=q.front();
+           q.pop();
+           st.push(temp);
+           if(temp->right) q.push(temp->right);
+           if(temp->left) q.push(temp->left);
+       }
+       while(!st.empty()){
+           Node* temp=st.top();
+           st.pop();
+           ans.push_back(temp->data);
+       }
+       return ans;
+    }
 }; 
