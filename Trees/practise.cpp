@@ -197,4 +197,11 @@ int height(Node* root) {
        rightBoundary(root,ans); //right boundary
        return ans;
     }
+    // sum of left nodes
+    int sumLeftNodes(Node* root){
+        if(!root) return 0;
+        int sum=0;
+        if(root->left && !root->left->left && !root->left->right) return root->left->data;
+        return sum+sumLeftNodes(root->left)+sumLeftNodes(root->right);
+    }
 }; 
