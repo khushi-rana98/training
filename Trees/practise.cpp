@@ -238,6 +238,7 @@ int height(Node* root) {
         }
         return ans;
     }
+    // k distance from root node--
     vector<int> kdistance(int k, Node *root) {
         if(!root) return {};
         vector<int>ans;
