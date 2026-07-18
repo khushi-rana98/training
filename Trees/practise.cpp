@@ -269,4 +269,16 @@ int height(Node* root) {
        return {};
         
     }
+    // lowest common ancestor of binary tree--
+    Node* lowestCommonAncestor(Node* root, Node* p, Node* q) {
+        if(!root) return NULL;
+        // any one of p or q is root its the descendatnt
+        if(root==p || root==q) return root;
+       Node* left_ans=lowestCommonAncestor(root->left,p,q);
+       Node* right_ans=lowestCommonAncestor(root->right,p,q);
+       if(left_ans && right_ans) return root;
+       else if(left_ans && !right_ans) return left_ans;
+       else if(!left_ans && right_ans) return right_ans;
+       else return NULL;
+    }
 }; 
