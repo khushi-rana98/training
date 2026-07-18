@@ -238,4 +238,34 @@ int height(Node* root) {
         }
         return ans;
     }
+    vector<int> kdistance(int k, Node *root) {
+        if(!root) return {};
+        vector<int>ans;
+        queue<Node*>q;
+        int level=0;
+        q.push(root);
+        while(!q.empty()){
+            int size=q.size();
+
+            if(level==k){
+                while(!q.empty()){
+                    ans.push_back(q.front()->data);
+                    q.pop();
+                }
+                return ans;
+            }
+            else{
+                for(int i=1;i<=size;i++){
+                    Node* temp=q.front();
+                    q.pop();
+                    if(temp->left) q.push(temp->left);
+                    if(temp->right)q.push(temp->right);
+                    
+                }
+                level++;
+            }
+        }
+       return {};
+        
+    }
 }; 
