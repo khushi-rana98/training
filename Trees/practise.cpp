@@ -222,4 +222,30 @@ int height(Node* root) {
        }
        return ans;
     }
+     vector<int> topView(Node *root) {
+        // code here
+        if(!root) return {};
+        vector<int>ans;
+        map<int, int>mp;
+        queue<pair<Node*,int>>q;
+        
+        q.push(make_pair(root,0));
+        while(!q.empty()){
+            pair <Node*, int>frontNode=q.front();
+            q.pop();
+            Node* node=frontNode.first;
+            int dist=frontNode.second;
+            if(mp.find(dist)==mp.end()){
+               mp[dist]=node->data;
+            }
+            if(node->left)
+            q.push(make_pair(node->left,dist-1));
+            if(node->right)
+            q.push(make_pair(node->right,dist+1));
+        }
+        for(auto it:mp){
+            ans.push_back(it.second);
+        }
+        return ans;
+    }
 }; 
