@@ -28,6 +28,13 @@ int findways(int n){
     if(n==2) return 2;
     return findways(n-1)+findways(n-2);
 }
+// find gcd of 2 numbers using recursion--using an algorthm called euclidean algorithm
+// remember gcd(a,b)= gcd(b,a%b) gcd(a,0)=a
+int gcd(int a, int b) {
+      if(b==0) return a;
+      return gcd(b,a%b);
+        
+    }
 bool linearSearch(int arr[], int n, int key){
     if(n==0) return false; 
     if(arr[0]==key) return true;
