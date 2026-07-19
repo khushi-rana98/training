@@ -90,6 +90,7 @@ void convertToupperCase(string &st, int index){ //to make changes reflect in the
 // space complexity is :1--> recursive calls : n*n for every subset and n for every temp array
 // and space by ans vector is 2^n*n
 // total space is O(n*2^n+n*n)=O(n*2^n)
+// to turn the space complexity as O(n) keep temp as a global n pass it by refernce. also keep temp.pop_back() aftr the recursive call of pick the elmnt
 #include <vector>
 void subseq(vector<int>nums, int index, int n, vector<int>temp, vector<vector<int>>&ans){
     if(index==n){
