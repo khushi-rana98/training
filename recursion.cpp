@@ -78,6 +78,12 @@ void printReverse(string st, int index, int size){
     printReverse(st, index+1,size);
     cout<<st[index];
 }
+// convert a string from lowercase to uppercase using recursion
+void convertToupperCase(string &st, int index){ //to make changes reflect in the original string we need to pass it by reference
+    if(index<0) return;
+    st[index]='A'+st[index]-'a';   //i could hv used toupper() function
+    return convertToupperCase(st,index-1);
+}
 int main(){
     printNumber(10);
     cout<<endl<<"Printing numbers 1 to 10: ";
