@@ -66,6 +66,18 @@ int countVowels(string st, int index, int size){
     return 1+countVowels(st,index+1,size);
     return countVowels(st,index+1,size);
 }
+// reverse a string using recursion
+void reverseString(string &st, int start, int end){
+    if(start>=end) return;
+    swap(st[start], st[end]);
+    reverseString(st, start+1, end-1);
+}
+// print the reverse of a string using recursion
+void printReverse(string st, int index, int size){
+    if(index==size) return;
+    printReverse(st, index+1,size);
+    cout<<st[index];
+}
 int main(){
     printNumber(10);
     cout<<endl<<"Printing numbers 1 to 10: ";
