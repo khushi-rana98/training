@@ -58,6 +58,14 @@ bool binarySearch(int a[], int s, int e, int key){
     else
     return binarySearch(a,mid+1,e,key);
 }
+// recursion on strings
+// count vowels
+int countVowels(string st, int index, int size){
+    if(index==size) return 0;
+    if(st[index]=='a'|| st[index]=='e'|| st[index]=='i'|| st[index]=='o'|| st[index]=='u')
+    return 1+countVowels(st,index+1,size);
+    return countVowels(st,index+1,size);
+}
 int main(){
     printNumber(10);
     cout<<endl<<"Printing numbers 1 to 10: ";
