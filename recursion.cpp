@@ -104,12 +104,33 @@ void subseq(vector<int>nums, int index, int n, vector<int>temp, vector<vector<in
     subseq(nums,index+1,n,temp,ans);
 
 }
+// generate all subsets of a string using recursion--
 vector<vector<int>> subsets(vector<int> &nums){
     vector<int>temp;
     vector<vector<int>>ans;
     subseq(nums,0,nums.size(),temp,ans);
     return ans;
 }
+ void print(string &s, int index,int size, string &temp, vector<string>&res){
+      if(size==index){
+          res.push_back(temp);
+          return;
+      }
+    //   not pick
+    print(s,index+1,size, temp, res);
+    // pick
+    temp+=s[index];
+    print(s,index+1,size,temp,res);
+    temp.pop_back();
+  }
+    vector<string> powerSet(string &s) {
+        // Code here
+        vector<string>res;
+        string temp="";
+        print(s,0,s.size(),temp,res);
+        sort(res.begin(),res.end());
+        return res;
+    }
 int main(){
     printNumber(10);
     cout<<endl<<"Printing numbers 1 to 10: ";
