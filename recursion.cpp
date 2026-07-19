@@ -14,11 +14,19 @@ int fact(int n){
     if(n==0) return 1;
     return n*fact(n-1);
 }
+// fibonacci series using recursion
 int fib(int n){
     if(n==0) return 0;
     if(n==1) return 1;
     return fib(n-1)+fib(n-2);
 
+}
+// nth staircase problem using recursion
+int findways(int n){
+    if(n==0) return 1;
+    if(n==1) return 1;
+    if(n==2) return 2;
+    return findways(n-1)+findways(n-2);
 }
 bool linearSearch(int arr[], int n, int key){
     if(n==0) return false; 

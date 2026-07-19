@@ -2,8 +2,8 @@
 using namespace std;
 // binary search tree-> left child is smaller than root and right child is greater than root
     // BST is a binary tree with the properies:
-    // in case a tree has inorder as sorted arrya then its a BST
-    //
+    // in case a tree has its inorder traversal as sorted arrya then its a BST
+    
 class Node{
 public:
 Node* left;
@@ -16,7 +16,7 @@ Node(int val){
 }
 };
 class BinarySearchTree{
-// leetcode 700
+// leetcode 700--search a node in BST
  Node* searchBST(Node* root, int val) {
         if(!root) return NULL;
         if(root->data==val) return root;
