@@ -35,6 +35,16 @@ int gcd(int a, int b) {
       return gcd(b,a%b);
         
     }
+// head recursion: work happens after the recursive call
+//tail recursion: work happens before the recursive call
+
+// sum of elmnts of array using recursion
+int sumOfElements(int arr[], int n, int index){
+    if(index==n) return 0;
+    return arr[index]+sumOfElements(arr, n, index+1);
+}
+
+// print elmnts of array both reverse and forward using recursion
 bool linearSearch(int arr[], int n, int key){
     if(n==0) return false; 
     if(arr[0]==key) return true;
