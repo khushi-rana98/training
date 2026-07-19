@@ -84,6 +84,31 @@ void convertToupperCase(string &st, int index){ //to make changes reflect in the
     st[index]='A'+st[index]-'a';   //i could hv used toupper() function
     return convertToupperCase(st,index-1);
 }
+
+// ---print all subsets/ subsequences using recursion----
+// remember the number of subsets of a set of size n is 2^n
+// space complexity is :1--> recursive calls : n*n for every subset and n for every temp array
+// and space by ans vector is 2^n*n
+// total space is O(n*2^n+n*n)=O(n*2^n)
+#include <vector>
+void subseq(vector<int>nums, int index, int n, vector<int>temp, vector<vector<int>>&ans){
+    if(index==n){
+        ans.push_back(temp);
+        return;
+    }
+    // not pick the element
+    subseq(nums,index+1,n,temp,ans);
+    // pick the element
+    temp.push_back(nums[index]);
+    subseq(nums,index+1,n,temp,ans);
+
+}
+vector<vector<int>> subsets(vector<int> &nums){
+    vector<int>temp;
+    vector<vector<int>>ans;
+    subseq(nums,0,nums.size(),temp,ans);
+    return ans;
+}
 int main(){
     printNumber(10);
     cout<<endl<<"Printing numbers 1 to 10: ";
