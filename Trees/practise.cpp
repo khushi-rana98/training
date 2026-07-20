@@ -316,5 +316,18 @@ void inorder(Node* root,vector<int>&ans){
         }
         return false;
     }
-
+    
+void inorder(vector<int>&ans, Node* root){
+        if(!root) return;
+        inorder(ans,root->left);
+        ans.push_back(root->data);
+        inorder(ans,root->right);
+    }
+    int kthSmallest(Node* root, int k) {
+        vector<int>ans;
+        inorder(ans,root);
+        if(k<=ans.size())
+        return ans[k-1];
+        return -1;
+    }
 }; 
