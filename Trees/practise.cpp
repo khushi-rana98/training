@@ -123,7 +123,8 @@ int height(Node* root) {
     }
     // reversal level order traversal-- usiing stack and queue. queue to traverse level wise
     // and to get the data in reverse . there comes the stack
-     vector<int> reverseLevelOrder(Node *root) {
+     vector<int> reverseLevelOrder(Node *root) 
+     {
        if(!root) return {};
        queue<Node*>q;
        stack<Node*>st;
@@ -345,5 +346,14 @@ void inorder(vector<int>&ans, Node* root){
         Node* root=build(nums,st,end);
         return root;
 
+    }
+    // validate BST--Leetcode 98
+    bool validate(Node* node, long long min,long long max){
+        if(node==NULL) return true;
+        if(node->data<=min || node->data >=max) return false;
+        return validate(node->left,min,node->data) && validate(node->right,node->data,max);
+    }
+    bool isValidBST(Node* root) {
+        return validate(root,LLONG_MIN, LLONG_MAX);
     }
 }; 
