@@ -294,5 +294,27 @@ int height(Node* root) {
         return root;
     }
 
+    // two sum in BST--leetcode 653
+void inorder(Node* root,vector<int>&ans){
+    if(!root) return;
+    inorder(root->left,ans);
+    ans.push_back(root->data);
+    inorder(root->right,ans);
+
+}
+    bool findTarget(Node* root, int k) {
+        vector<int>ans;
+        inorder(root,ans);
+        int st=0;
+        int e=ans.size()-1;
+        while(st<e){
+            if(ans[st]+ans[e]==k) return true;
+            else if(ans[st]+ans[e]>k)
+            e--;
+            else
+            st++;
+        }
+        return false;
+    }
 
 }; 
