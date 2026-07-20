@@ -330,4 +330,20 @@ void inorder(vector<int>&ans, Node* root){
         return ans[k-1];
         return -1;
     }
+    // build a balancd BST from sorted array--Leetcode 108
+     Node* build( vector<int>&nums, int st, int e){
+        if(st>e) return NULL;
+        int mid=st+(e-st)/2;
+        Node* root=new Node(nums[mid]);
+        root->left=build(nums,st,mid-1);
+        root->right=build(nums,mid+1,e);
+        return root;
+    }
+    Node* sortedArrayToBST(vector<int>& nums) {
+        int st=0;
+        int end=nums.size()-1;
+        Node* root=build(nums,st,end);
+        return root;
+
+    }
 }; 
