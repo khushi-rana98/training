@@ -281,8 +281,18 @@ int height(Node* root) {
        else if(!left_ans && right_ans) return right_ans;
        else return NULL;
     } 
-
-    
+    // insert a node in BST--
+    Node* insertIntoBST(Node* root, int val) {
+        if(!root){
+            Node* n=new Node(val);
+            return n;
+        }
+        if(root->data > val)
+         root->left=insertIntoBST(root->left,val);
+        else
+        root->right=insertIntoBST(root->right,val);
+        return root;
+    }
 
 
 }; 
