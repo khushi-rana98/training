@@ -72,6 +72,35 @@ void printGraph(){
         return ans;
         
     }
+ void dfs(vector<int>&vis, int node, unordered_map<int,list<int>>&adj){
+      vis[node]=1;
+      for(auto neigh: adj[node]){
+          if(!vis[neigh])
+          dfs(vis,neigh,adj);
+      }
+      
+     
+      
+  }
+    int countConnected(int V, vector<vector<int>>& edges) {
+       
+        vector<int>vis(V,0);
+        unordered_map<int,list<int>>adj;
+        for(auto &e:edges){
+            int u=e[0];
+            int v=e[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        int count=0; //count of connected  components
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                dfs(vis,i,adj);
+                count++;
+            }
+        }
+        return count;
+    }
 };
 
 int main(){
