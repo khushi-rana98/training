@@ -348,12 +348,59 @@ void inorder(vector<int>&ans, Node* root){
 
     }
     // validate BST--Leetcode 98
+    #include <climits>
     bool validate(Node* node, long long min,long long max){
         if(node==NULL) return true;
         if(node->data<=min || node->data >=max) return false;
         return validate(node->left,min,node->data) && validate(node->right,node->data,max);
     }
     bool isValidBST(Node* root) {
-        return validate(root,LLONG_MIN, LLONG_MAX);
+        return validate(root,INT_MIN, INT_MAX);
+    }
+    // deletion in BST--
+     Node* pred(Node* root) {
+        while (root->right) {
+            root = root->right;
+        }
+        return root;
+    }
+
+    Node* deleteNode(Node* root, int key) {
+        if (!root) return nullptr;
+
+        if (key < root->data) {
+            root->left = deleteNode(root->left, key);
+        }
+        else if (key > root->data) {
+            root->right = deleteNode(root->right, key);
+        }
+        else { // node found
+
+            // Case 1: Leaf node
+            if (!root->left && !root->right) {
+                delete root;
+                return nullptr;
+            }
+
+            // Case 2: One child
+            if (!root->left) {
+                Node* temp = root->right;
+                delete root;
+                return temp;
+            }
+
+            if (!root->right) {
+                Node* temp = root->left;
+                delete root;
+                return temp;
+            }
+
+            // Case 3: Two children
+            Node* temp = pred(root->left);
+            root->data = temp->data;
+            root->left = deleteNode(root->left, temp->data);
+        }
+
+        return root;
     }
 }; 
