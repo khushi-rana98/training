@@ -101,6 +101,40 @@ void printGraph(){
         }
         return count;
     }
+
+    // no. of islands in a 2D grid problem
+    // remember: dfs algorithm is used to traverse the left, right, up and down of grid
+     void dfs(int r, int c, vector<vector<char>>&grid, vector<vector<int>>&visited){
+        visited[r][c]=1; //mark this visited
+        int t_rows=grid.size();//total rows
+        int t_cols=grid[0].size(); //total cols
+        // up down left right
+        int x[4]={-1,1,0,0};
+        int y[4]={0,0,-1,1};
+        for(int k=0;k<4;k++){
+            int row=r+x[k];
+            int col=c+y[k];
+            if(row>=0 && row<t_rows && col>=0 && col<t_cols && !visited[row][col] && 
+            grid[row][col]=='1'){
+                dfs(row,col,grid,visited);
+            }
+        }
+    }
+    int numIslands(vector<vector<char>>& grid) {
+        int r=grid.size(); //n_rows
+        int c=grid[0].size(); //n_col
+        int count=0;
+        vector<vector<int>>visited(r,vector<int>(c,0));
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                if(!visited[i][j] && grid[i][j]=='1'){
+                    count++; //increase count if not visited
+                    dfs(i,j,grid,visited);
+                }
+            }
+        }
+        return count;
+    }
 };
 
 int main(){
