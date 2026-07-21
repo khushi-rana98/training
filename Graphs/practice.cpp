@@ -135,6 +135,26 @@ void printGraph(){
         }
         return count;
     }
+    // NO. OF PROVINCES PROBLEM
+     void dfs(vector<int>&visited,int node, vector<vector<int>>&isConnected){
+        visited[node]=1;
+        for(int neigh=0;neigh<isConnected.size();neigh++){
+            if(isConnected[node][neigh]==1 && !visited[neigh])
+            dfs(visited,neigh, isConnected);
+        }
+    }
+    int findCircleNum(vector<vector<int>>& isConnected) {
+       int v=isConnected.size(); //n_vertices
+       vector<int>visited(v,0);
+       int provinces=0;
+       for(int i=0;i<v;i++){
+        if(!visited[i]){
+            provinces++;
+            dfs(visited,i,isConnected);
+        }
+       }
+       return provinces;
+    }
 };
 
 int main(){
