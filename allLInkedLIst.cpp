@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 using namespace std;
 class Node{
     public:
@@ -52,6 +53,19 @@ class LinkedList{
     }
     return slow;
     }
+    // detet loop in linked list:
+    // method 1: using unordered_map means hashing or set to store the address of nodes. 
+    // it take O(n) time to traverse the linked list n O(n) space to stire the addresses
+     bool detectLoop(Node* head) {
+      unordered_map<Node*,int>mp;
+       while(head){
+        if(mp[head]==1) return true;
+        mp[head]=1;
+        head=head->next;
+       }
+       return false;
+    }
+    // method 2: 
     //    Partition List
 // Odd Even Linked List
 // Sort List
