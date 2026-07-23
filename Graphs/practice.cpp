@@ -152,8 +152,49 @@ void printGraph(){
             provinces++;
             dfs(visited,i,isConnected);
         }
+        
        }
        return provinces;
+    }
+// DETECT CYCLE IN AN UNDIRECTED GRAPH--
+// USING BFS AND DFS--
+    bool bfs(int start, unordered_map<int,list<int>>&adj, vector<bool>&visited){
+      visited[start]=true;
+      unordered_map<int,int>parent;
+      parent[start]=-1;
+      queue<int>q;
+      q.push(start);
+      while(!q.empty()){
+          int frontNode=q.front();
+          q.pop();
+          for(int neigh:adj[frontNode]){
+              if(!visited[neigh]){
+                  visited[neigh]=true;
+                  q.push(neigh);
+                  parent[neigh]=frontNode;
+              }
+              else if(neigh!=parent[frontNode])
+              return true;
+          }
+      }
+      return false;
+  }
+    bool isCycle(int V, vector<vector<int>>& edges) {
+      
+        unordered_map<int,list<int>>adj;
+        for(auto &edges:edges){
+            int u=edges[0];
+            int v=edges[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        vector<bool>visited(V,false);
+        for(int i=0;i<V;i++){
+            if(!visited[i]){
+                if(bfs(i,adj,visited)) return true;
+            }
+        }
+        return false;
     }
 };
 
