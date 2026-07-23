@@ -247,13 +247,55 @@ void printGraph(){
            adjList[v].push_back(u);
        }
        vector<bool>visited(V,false);
-       for(int i=0;i<V;i++){
+       for(int i=0;i<V;i++){//here we are ensuring all the graphs means components of graph are covered even the disconnected ones
            if(!visited[i]){
                if(dfs(i,-1,visited,adjList))
                return true;
            }
        }
        return false;
+   }
+// detect cycle in an undirected graph using bfs---
+// remember : dont forget to handle the disconnected components of graph
+bool bfs(int start, int parent, vector<bool>&visited, unordered_map<int,list<int>>adjList){
+    queue<pair<int,int>>q;
+     q.push(make_pair(start,-1));
+    
+     visited[start]=true;
+     while(!q.empty()){
+         int size=q.size();
+         for(int i=0;i<size;i++){
+             auto curr=q.front();
+             q.pop();
+             int node=curr.first;
+             int parent=curr.second;
+             for(auto neigh:adjList[node]){  ///processing all neighbors
+                 if(!visited[neigh]){ //case1: not visited neighbor
+                     visited[neigh]=true;
+                     q.push(make_pair(neigh,node));
+                 }
+                 else if(visited[neigh] && neigh!=parent) return true;
+             }
+         }
+     }
+     return false;
+  }
+    bool isCycle(int V, vector<vector<int>>&edges){
+     unordered_map<int, list<int>>adjList;
+     for(auto&edge:edges){
+         int u=edge[0];
+         int v=edge[1];
+         adjList[u].push_back(v);
+         adjList[v].push_back(u);
+     }
+      vector<bool>visited(V,false);
+     for(int i=0;i<V;i++){//here we are ensuring all the graphs means components of graph are covered even the disconnected ones
+         if(!visited[i]){
+             if(bfs(i,-1,visited,adjList))
+             return true;
+         }
+     }
+    return false;
    }
     // detect cycle in a directed graph:
     
