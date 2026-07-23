@@ -76,6 +76,25 @@ class LinkedList{
         }
         return false;
     }
+    // length of loop in linked list:
+     int lengthOfLoop(Node *head) {
+      Node*slow=head;
+      Node* fast=head;
+      while(fast!=NULL && fast->next!=NULL){
+          slow=slow->next;
+          fast=fast->next->next;
+          if(slow==fast) break;
+      }
+      if(!fast || !fast->next) return 0;
+      int count=1;
+      slow=fast->next;
+      while(slow!=fast){
+          count++;
+          slow=slow->next;
+          
+      }
+      return count;
+    }
     //    Partition List
 // Odd Even Linked List
 // Sort List
