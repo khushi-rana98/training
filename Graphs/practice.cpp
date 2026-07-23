@@ -156,6 +156,33 @@ void printGraph(){
        }
        return provinces;
     }
+    // flood fill problem--important interview question
+    void dfs(int r, int c, vector<vector<bool>>&visited,vector<vector<int>>& image, int o_color, int color){
+        int t_rows=image.size();
+        int t_cols=image[0].size();
+        visited[r][c]=true;
+        image[r][c]=color;
+        // up down left right
+        int x[4]={-1,1,0,0};
+        int y[4]={0,0,-1,1};
+        for(int k=0;k<4;k++){
+            int row=r+x[k];
+            int col=c+y[k];
+            if(row>=0 && row<t_rows && col>=0 && col<t_cols && image[row][col]==o_color && !visited[row][col])
+            dfs(row,col,visited, image,o_color, color);
+        }
+
+            }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+        int r=image.size(); //no_vertices
+        int c=image[0].size();
+        vector<vector<bool>>visited(r,vector<bool>(c,false)); //visited
+        if(sr>=0 && sr<r && sc>=0 && sc<c){
+            int og_color=image[sr][sc];
+            dfs(sr,sc,visited,image,og_color,color);
+        }
+        return image;
+    }
 // DETECT CYCLE IN AN UNDIRECTED GRAPH--
 // USING BFS AND DFS--
     bool bfs(int start, unordered_map<int,list<int>>&adj, vector<bool>&visited){
