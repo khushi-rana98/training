@@ -65,7 +65,17 @@ class LinkedList{
        }
        return false;
     }
-    // method 2: 
+    // method 2: detect cycle in linked list: using slow and fast pointer
+    bool detectLoop(Node* head){
+        Node* slow=head;
+        Node* fast=head;
+        while(fast!=nullptr && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast) return true;
+        }
+        return false;
+    }
     //    Partition List
 // Odd Even Linked List
 // Sort List
