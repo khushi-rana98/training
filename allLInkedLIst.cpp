@@ -38,6 +38,20 @@ class LinkedList{
         Node* prev=nullptr;
         head=reverseList(head,prev);
     }
+
+    // find middle node of linked list:
+    // remember: if 2 person cover the same distance. one wd double of another. when the one wd double speed complete tht distance, 
+    // another one reaches exct half of the distance.so, if we have 2 pointers, one moving at double spped of another,
+    // when the faster one reaches the end of linked list, the slower one will b at middle of linked list.
+    Node* middleNode(Node* head) {
+    Node* slow=head;
+    Node* fast=head;
+    while(fast!=NULL && fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    return slow;
+    }
     //    Partition List
 // Odd Even Linked List
 // Sort List
