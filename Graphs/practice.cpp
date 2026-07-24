@@ -331,7 +331,51 @@ bool bfs(int start, int parent, vector<bool>&visited, unordered_map<int,list<int
      }
      return ans;
     }
-    
+    // topological sort using bfs--kahn's problem
+    // remember:  first we need to create adjList
+    // step2: find indegree of alll nodes n store it in indegree array
+    // step3: push all nodes with indegree 0 in queue
+    // step 4: for each node in queue, pop it n push it in ans array, then traverse all its neighbors and decrese there 
+    // indegree by 1, (as the node is already popped so indegree got degree).
+    // find the neighbors whose indegree is 0 push it in queue. keep doing this until queu is empty.
+    // at the end,check if the size of ans array is same as tht of no. of vertices. if yes. return topological sort stored
+    // in ans array. if not, return an empty array as it means cycle is present in the graph.
+    vector<int> topoSort(int V, vector<vector<int>>& edges) {
+       unordered_map<int,list<int>>adjList;
+       for(auto &edge:edges){
+           int u=edge[0];
+           int v=edge[1];
+           adjList[u].push_back(v);
+       }
+    // indegree
+    vector<int>indegree(V,0);
+    for(int i=0;i<V;i++){
+        for(auto neigh: adjList[i]){
+            indegree[neigh]++;
+        }
+    }
+    queue<int>q;
+    // push all vertices wd 0 indegree--no dependency
+    for(int i=0;i<V;i++){
+        if(indegree[i]==0){
+            q.push(i);
+            
+        }
+    }
+    vector<int>ans;
+     while(!q.empty()){
+         int fNode=q.front();
+         ans.push_back(fNode);
+         q.pop();
+         for(auto neigh:adjList[fNode]){
+             indegree[neigh]--;
+            
+             if(indegree[neigh]==0){ q.push(neigh);}
+         }
+     } 
+     if(ans.size()!=V) return {};
+     return ans;
+    }
 };
 
 int main(){
