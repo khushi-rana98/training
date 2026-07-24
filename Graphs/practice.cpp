@@ -3,6 +3,7 @@
 #include <list>
 #include <vector>
 #include <queue>
+#include <stack>
 using namespace std;
 class Graph{
 public:
@@ -298,6 +299,38 @@ bool bfs(int start, int parent, vector<bool>&visited, unordered_map<int,list<int
     return false;
    }
     // detect cycle in a directed graph:
+    // topological sort : DAG--directed acyclic graph: used to check the dependencies between the node.
+    // using dfs
+    void dfs(int node, unordered_map<int,list<int>>&adjList, vector<bool>&visited, stack<int>&st){
+      visited[node]=true;
+      for(auto neigh:adjList[node]){
+          if(!visited[neigh])
+              dfs(neigh, adjList, visited, st);
+               
+      }
+      st.push(node);
+  }
+    vector<int> topoSort(int V, vector<vector<int>>& edges) {
+        // code here
+        unordered_map<int,list<int>>adjList;
+        for(auto &edge:edges){
+            int u=edge[0];
+            int v=edge[1];
+            adjList[u].push_back(v);
+        }
+        vector<bool>visited(V,false);
+        stack<int>st;
+        for(int i=0;i<V;i++){ //safe check for unconnected components of grpah
+            if(!visited[i])
+            dfs(i,adjList,visited,st);
+        }
+     vector<int>ans;
+     while(!st.empty()){
+         ans.push_back(st.top());
+         st.pop();
+     }
+     return ans;
+    }
     
 };
 
