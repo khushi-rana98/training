@@ -11,6 +11,15 @@ int superiorelmnt(int a[], int n){
     }
     return count;
 }
+// max no. of cake pieces: 0 cuts=>1 piece, 1 cut=2 , 2 cuts=4, 3 cuts=7
+// pattern: 1 ,2 , 4, 7, 11, 16
+int maxCuts(int n){
+    int pSum=1;
+    for(int i=0;i<=n;i++){
+        pSum+=i;
+    }
+    return pSum;
+}
 int main(){
     int n;
     cout<<"Enter the number of elmnts";
