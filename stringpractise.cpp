@@ -1,7 +1,26 @@
 #include <iostream>
 #include <vector>
-
+#include <unordered_map>
 using namespace std;
+// permute palindrome: we dont need to find all permutations of string. instead remember: a palindome has:
+// either even count of each character OR even count and exctly one odd count
+// for this problem : we count frequency of each character-->
+// count how many characters hv oddCount
+//  if oddCount>1 palindrome not posible for the string
+// if oddCOunt<=1 palindrome possible
+bool canPermutePalindrome(string s){
+    unordered_map<char,int>freq;
+    for(char ch:s)
+    freq[ch]++;
+
+    int oddCount=0;
+    for(auto it:freq){
+        if(it.second%2!=0)
+        oddCount++;
+    }
+    return oddCount<=1;
+
+}
 bool isSubsequence(string s, string t){
     int s1=0;
     int t1=0;
