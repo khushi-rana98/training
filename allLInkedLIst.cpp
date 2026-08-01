@@ -106,6 +106,38 @@ class LinkedList{
 
     return dummy->next;
     }
+    // method 2: merge 2 sorted linked list when there is no dummy node:--wdout using extra node
+     Node* sortedMerge(Node* head1, Node* head2) {
+        if(!head1) return head2;
+        if(!head2) return head1;
+       Node* head=nullptr;
+    //   handle first node first
+    
+    
+       if(head1->data<=head2->data){
+       head=head1;
+       head1=head1->next;
+        }
+        else{
+            head=head2;
+            head2=head2->next;
+        }
+        Node* curr=head;
+        while(head1 && head2){
+            if(head1->data<=head2->data){
+                curr->next=head1;
+                head1=head1->next;
+            }
+            else if(head1->data>head2->data){
+                curr->next=head2;
+                head2=head2->next;
+            }
+            curr=curr->next;
+        }
+        curr->next=(head1)?head1:head2;
+        return head;
+        
+    }
     // length of loop in linked list:
      int lengthOfLoop(Node *head) {
       Node*slow=head;
