@@ -66,6 +66,12 @@ class LinkedList{
        return false;
     }
     // method 2: detect cycle in linked list: using slow and fast pointer
+    // remember the intuition: slow pointer moves 1 step and fast pointer moves 2 steps at a time. if there is a loop in linked list
+    // when both pointers enter loop. notice: fast pointer gain one node over slow pointer in each iteration. means, increases the gap by 1 
+    // over every iteration. since, the length of loop is finite. there is a time, when relative distance between both pointers 
+    // starts like 1-> 2 ->3 -> 4->5 the gap btween both pointers. lets say the cycle length is 5. the relative distance
+    // betweenboth pointers is 0 when the gap is 5. so the fast pointer will meet the slow pointer at some point in the
+    // loop. so , we can say tht there is a loop in linked list.
     bool detectLoop(Node* head){
         Node* slow=head;
         Node* fast=head;
