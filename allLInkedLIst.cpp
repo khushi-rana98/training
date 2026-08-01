@@ -82,6 +82,30 @@ class LinkedList{
         }
         return false;
     }
+
+    // merge two sorted linked list: using dummy node-- we can do this wdout extra node also. then we hv to deal wd
+    // first node of both linked list to avoid dummy node.
+    Node* mergeTwoLists(Node* list1, Node* list2) {
+    Node* dummy = new Node(-1);
+    Node* temp = dummy;
+
+    while(list1 && list2) {
+        if(list1->data <= list2->data) {
+            temp->next = list1;
+            list1 = list1->next;
+        }
+        else {
+            temp->next = list2;
+            list2 = list2->next;
+        }
+
+        temp = temp->next;
+    }
+
+    temp->next = (list1) ? list1 : list2;
+
+    return dummy->next;
+    }
     // length of loop in linked list:
      int lengthOfLoop(Node *head) {
       Node*slow=head;
@@ -106,9 +130,9 @@ class LinkedList{
 // Sort List
 
 
-// Detect Loop/Cycle
-// Remove Nth Node from End
-// Merge Two Sorted Lists
+// Detect Loop/Cycle ---
+// Remove Nth Node from End 
+// Merge Two Sorted Lists ---
 // Palindrome Linked List
 // Intersection of Two Lists
 // insert at 
