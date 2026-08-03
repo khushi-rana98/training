@@ -161,6 +161,51 @@ class LinkedList{
 
     return dummy->next;
 }
+// check if the linked list is palindrome or not: using 2 pointer approach
+Node* reversal(Node* head) {
+    Node* prev = nullptr;
+    Node* curr = head;
+    Node* fut = nullptr;
+
+    while(curr) {
+        fut = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = fut;
+    }
+
+    return prev;
+}
+
+Node* findMid(Node* head) {
+    Node* slow = head;
+    Node* fast = head;
+
+    while(fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
+
+bool isPalindrome(Node* head) {
+    Node* slow = findMid(head);   // Find middle
+    slow = reversal(slow);        // Reverse second half
+
+    Node* p1 = slow;
+    Node* p2 = head;
+
+    while(p1) {
+        if(p1->data != p2->data)
+            return false;
+
+        p1 = p1->next;
+        p2 = p2->next;
+    }
+
+    return true;
+}
     // length of loop in linked list:
      int lengthOfLoop(Node *head) {
       Node*slow=head;
@@ -188,7 +233,7 @@ class LinkedList{
 // Detect Loop/Cycle ---
 // Remove Nth Node from End --
 // Merge Two Sorted Lists ---
-// Palindrome Linked List
+// Palindrome Linked List--
 // Intersection of Two Lists
 // insert at 
 // odd even in linked list
