@@ -138,6 +138,29 @@ class LinkedList{
         return head;
         
     }
+    //remove nth node from end of linked list: using 2 pointer approach 
+     Node* removeNthFromEnd(Node* head, int n) {
+    Node* dummy = new Node(0);
+    dummy->next = head;
+
+    Node* slow = dummy;
+    Node* fast = dummy;
+
+    for(int i = 1; i <= n + 1 && fast != NULL; i++) {
+        fast = fast->next;
+    }
+
+    while(fast) {
+        slow = slow->next;
+        fast = fast->next;
+    }
+
+    Node* temp = slow->next;
+    slow->next = slow->next->next;
+    delete temp;
+
+    return dummy->next;
+}
     // length of loop in linked list:
      int lengthOfLoop(Node *head) {
       Node*slow=head;
@@ -163,7 +186,7 @@ class LinkedList{
 
 
 // Detect Loop/Cycle ---
-// Remove Nth Node from End 
+// Remove Nth Node from End --
 // Merge Two Sorted Lists ---
 // Palindrome Linked List
 // Intersection of Two Lists
