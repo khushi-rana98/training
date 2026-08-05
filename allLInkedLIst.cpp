@@ -206,6 +206,22 @@ bool isPalindrome(Node* head) {
 
     return true;
 }
+// intersection of two linked list: using 2 approach system
+class Solution {
+public:
+    Node* intersectPoint(Node* head1, Node* head2) {
+
+        Node* s1 = head1;
+        Node* s2 = head2;
+
+        while (s1 != s2) {
+            s1 = (s1 == nullptr) ? head2 : s1->next;
+            s2 = (s2 == nullptr) ? head1 : s2->next;
+        }
+
+        return s1;
+    }
+};
     // length of loop in linked list:
      int lengthOfLoop(Node *head) {
       Node*slow=head;
