@@ -34,6 +34,19 @@ string binaryoperations(string s1, string s2, string op){
     }
     return ans;
 }
+// smart method:
+string binaryoperations2(string s1,string s2, string op){
+    string ans="";
+    for(int i=0;i<max(s1.size(),s2.size());i++){
+        if(op=="AND")
+        ans+= ((s1[i]-'0') & (s2[i]-'0'))+'0';
+        else if( op=="OR")
+        ans+= ((s1[i]-'0')|(s2[i]-'0'))+'0';
+        else if(op=="XOR")
+        ans+=((s1[i]-'0')^(s2[i]-'0'))+'0';
+    }
+    return ans;
+}
 bool canPermutePalindrome(string s){
     unordered_map<char,int>freq;
     for(char ch:s)
