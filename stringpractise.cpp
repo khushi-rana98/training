@@ -37,13 +37,20 @@ string binaryoperations(string s1, string s2, string op){
 // smart method:
 string binaryoperations2(string s1,string s2, string op){
     string ans="";
-    for(int i=0;i<max(s1.size(),s2.size());i++){
+    int i=s1.size()-1;
+    int j=s2.size()-1;
+    while(i>=0 || j>=0){
+        int a=0,b=0;
+        if(i>=0) a=s1[i]-'0';
+        if(j>=0) b=s2[j]-'0';
         if(op=="AND")
-        ans+= ((s1[i]-'0') & (s2[i]-'0'))+'0';
-        else if( op=="OR")
-        ans+= ((s1[i]-'0')|(s2[i]-'0'))+'0';
+        ans+=(a&b)+'0';
+        else if(op=="OR")
+        ans+=(a|b)+'0';
         else if(op=="XOR")
-        ans+=((s1[i]-'0')^(s2[i]-'0'))+'0';
+        ans+=(a^b)+'0';
+        i--;
+        j--;
     }
     return ans;
 }
