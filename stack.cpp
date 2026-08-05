@@ -23,6 +23,39 @@ bool isValidParenthesis(string s) {
         }
         return st.empty(); // handling this [( case: if stack is not empty then return false
     }
+    // simplify path--string and stack problem
+    class Solution {
+public:
+    string simplifyPath(string path) {
+        stack<string>st;
+        string curr="";
+        for(int i=0;i<=path.size();i++){
+            if(i==path.size() || path[i]=='/'){
+                if(curr=="" || curr=="."){}
+                else if(curr==".."){
+                    if(!st.empty())
+                    st.pop();
+                    }
+                else
+                st.push(curr);
+                curr="";
+            }
+            else
+            curr+=path[i];
+        }
+        vector<string>dirs;
+        while(!st.empty()){
+            dirs.push_back(st.top());
+            st.pop();
+        }
+        reverse(dirs.begin(),dirs.end()); //reversed the directories
+        string ans="";
+        for(string s:dirs){
+            ans+="/"+s;
+        }
+        return ans.empty()?"/":ans;
+    }
+};
 int main(){
     stack<int>s;
     s.push(2);
