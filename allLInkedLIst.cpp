@@ -245,6 +245,39 @@ Node* oddEvenList(Node* head) {
 
     return head;
 }
+// rotate linked list:
+Node* rotateRight(Node* head, int k) {
+
+    if (!head || !head->next || k == 0)
+        return head;
+
+    int n = 1;
+    Node* temp = head;
+
+    while (temp->next) {
+        n++;
+        temp = temp->next;
+    }
+
+    k = k % n;
+
+    if (k == 0)
+        return head;
+
+    temp->next = head;
+
+    Node* newTail = head;
+
+    for (int i = 1; i <= n - k - 1; i++) {
+        newTail = newTail->next;
+    }
+
+    head = newTail->next;
+
+    newTail->next = nullptr;
+
+    return head;
+}
     // length of loop in linked list:
      int lengthOfLoop(Node *head) {
       Node*slow=head;
