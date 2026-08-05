@@ -222,6 +222,29 @@ public:
         return s1;
     }
 };
+// odd even linked list:
+Node* oddEvenList(Node* head) {
+
+    if (head == nullptr || head->next == nullptr)
+        return head;
+
+    Node* odd = head;
+    Node* even = head->next;
+    Node* evenHead = even;
+
+    while (even != nullptr && even->next != nullptr) {
+
+        odd->next = even->next;
+        odd = odd->next;
+
+        even->next = odd->next;
+        even = even->next;
+    }
+
+    odd->next = evenHead;
+
+    return head;
+}
     // length of loop in linked list:
      int lengthOfLoop(Node *head) {
       Node*slow=head;
@@ -250,9 +273,9 @@ public:
 // Remove Nth Node from End --
 // Merge Two Sorted Lists ---
 // Palindrome Linked List--
-// Intersection of Two Lists
+// Intersection of Two Lists--
 // insert at 
-// odd even in linked list
+// odd even in linked list--
 // reverse linked list in k groups
 // Reverse in K Groups (for stronger companies)
 // Sort Linked List
