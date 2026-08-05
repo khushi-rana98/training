@@ -8,6 +8,32 @@ using namespace std;
 // count how many characters hv oddCount
 //  if oddCount>1 palindrome not posible for the string
 // if oddCOunt<=1 palindrome possible
+// binary operations on strings
+string binaryoperations(string s1, string s2, string op){
+    string ans="";
+    for(int i=0;i<max(s1.size(), s2.size());i++){
+        if(op=="AND"){
+           if(s1[i]=='1' && s2[i]=='1')
+           ans+='1';
+           else
+              ans+='0';
+        }
+        else if(op=="OR"){
+            if(s1[i]=='0' && s2[i]=='0')
+            ans+='0';
+            else
+            ans+='1';
+        }
+        else if(op=="XOR"){
+            if(s1[i]!=s2[i])
+            ans+='1';
+            else
+            ans+='0';
+        }
+        // ans += (!(a^b)) + '0'; this is for X-nor means not xor
+    }
+    return ans;
+}
 bool canPermutePalindrome(string s){
     unordered_map<char,int>freq;
     for(char ch:s)
