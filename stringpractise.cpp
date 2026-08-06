@@ -56,6 +56,26 @@ string binaryoperations2(string s1,string s2, string op){
     reverse(ans.begin(),ans.end());
     return ans;
 }
+// check if two strings are anagram:
+//anagram: frequency of each character in both strings should be same
+// sort both strings and compare them --it takes O(nlogn) time
+// smart way: count frequncy of each character in first array
+// decrease frequncy of each character in second array
+// if frequcy of eachcharacter turns 0. then its anagram
+bool isAnagram(string s, string t){
+    if(s.size()!=t.size()) return false;
+    vector<int> freq(26,0);
+    for(char c:s){ //increasinf the frequncy count for string1
+        freq[c-'a']++;
+    }
+    for(char c:t){
+        freq[c-'a']--; //decreasing the frequncy count for string2
+    }
+    for(int i=0;i<26;i++){
+        if(freq[i]!=0) return false;
+    }
+    return true;
+}
 bool canPermutePalindrome(string s){
     unordered_map<char,int>freq;
     for(char ch:s)
