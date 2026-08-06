@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
 using namespace std;
 // permute palindrome: we dont need to find all permutations of string. instead remember: a palindome has:
 // either even count of each character OR even count and exctly one odd count
@@ -52,6 +53,7 @@ string binaryoperations2(string s1,string s2, string op){
         i--;
         j--;
     }
+    reverse(ans.begin(),ans.end());
     return ans;
 }
 bool canPermutePalindrome(string s){
