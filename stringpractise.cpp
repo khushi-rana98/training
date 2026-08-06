@@ -3,12 +3,7 @@
 #include <unordered_map>
 #include <algorithm>
 using namespace std;
-// permute palindrome: we dont need to find all permutations of string. instead remember: a palindome has:
-// either even count of each character OR even count and exctly one odd count
-// for this problem : we count frequency of each character-->
-// count how many characters hv oddCount
-//  if oddCount>1 palindrome not posible for the string
-// if oddCOunt<=1 palindrome possible
+
 // binary operations on strings
 string binaryoperations(string s1, string s2, string op){
     string ans="";
@@ -76,6 +71,34 @@ bool isAnagram(string s, string t){
     }
     return true;
 }
+// reverse words ina string: "the sky is blue"-->"blue is sky the"
+ string reverseWords(string s) {
+     int i=s.size()-1;
+     vector<string>ans;
+     string result="";
+     while(i>=0){
+        while(i>=0 && s[i]==' ')
+        i--;
+        if(i<0) break;
+        int j=i;
+        while(i>=0 && s[i]!=' ')
+        i--;
+        string word=s.substr(i+1, j-i);
+        ans.push_back(word);
+    }
+    for(string s2: ans){
+        if(result.empty()) result+=s2;
+        else 
+        result+=" "+s2;
+    }
+    return result;
+    }
+// permute palindrome: we dont need to find all permutations of string. instead remember: a palindome has:
+// either even count of each character OR even count and exctly one odd count
+// for this problem : we count frequency of each character-->
+// count how many characters hv oddCount
+//  if oddCount>1 palindrome not posible for the string
+// if oddCOunt<=1 palindrome possible
 bool canPermutePalindrome(string s){
     unordered_map<char,int>freq;
     for(char ch:s)
