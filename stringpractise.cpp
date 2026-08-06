@@ -93,6 +93,35 @@ bool isAnagram(string s, string t){
     }
     return result;
     }
+    // frequency sort--
+     string frequencySort(string s) {
+        unordered_map<char,int>mp;
+        //storing the frequency of characters in map 
+        for(char c:s)
+        mp[c]++;
+
+        // step 2: store pairs
+        vector<pair<char,int>>arr;
+
+        for(auto it:mp){
+            arr.push_back(make_pair(it.first,it.second));
+        }
+        // step 3: sort the pairs based on frequncy
+        sort(arr.begin(),arr.end(),
+        [](pair<char,int>&a, pair<char,int>&b){
+            return a.second>b.second;
+        });
+        string ans="";
+        for(auto it:arr){
+            char ch=it.first;
+            int count=it.second;
+            while(count--){
+                ans+=ch;
+            }
+        }
+        return ans;
+
+    }
 // permute palindrome: we dont need to find all permutations of string. instead remember: a palindome has:
 // either even count of each character OR even count and exctly one odd count
 // for this problem : we count frequency of each character-->
