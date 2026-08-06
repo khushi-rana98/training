@@ -122,6 +122,38 @@ bool isAnagram(string s, string t){
         return ans;
 
     }
+
+// remove duplicates from string: min laxicographical order
+// remember: if we just need to remove duolicates. we could hv used the unordered_set, unordered_map or freq array
+// to keep check if this character has been seen or not.but here we need to remove duplicates and also return the 
+// string in min lexicographical order
+string removeDuplicateLetters(string s) {
+       vector<int>freq(26,0);
+    //    store the freq of each character of string
+       for(char c:s){
+        freq[c-'a']++;
+       }
+       vector<bool>visited(26,0);
+       stack<char>st;
+       for(char c:s){
+        freq[c-'a']--; //decrease the freq
+        if(visited[c-'a']) continue; //already present in the answer
+        while(!st.empty() && freq[st.top()-'a']!=0 &&
+        st.top()>c){
+            visited[st.top()-'a']=0;
+            st.pop();
+        }
+        st.push(c);
+        visited[c-'a']=1;
+       }
+       string ans="";
+       while(!st.empty()){
+        ans+=st.top();
+        st.pop();
+        }
+        reverse(ans.begin(),ans.end());
+        return ans;
+    }
 // permute palindrome: we dont need to find all permutations of string. instead remember: a palindome has:
 // either even count of each character OR even count and exctly one odd count
 // for this problem : we count frequency of each character-->
