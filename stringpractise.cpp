@@ -203,6 +203,30 @@ string removeDuplicateLetters(string s) {
         if(uCount==1 && word[0]>='A' && word[0]<='Z') return true;
         return false;
     }
+// remove extra spaces from string---
+string removeExtraSpaces(string s) {
+    string ans;
+    int i = 0, n = s.size();
+
+    while (i < n) {
+
+        while (i < n && s[i] == ' ')
+            i++;
+
+        while (i < n && s[i] != ' ') {
+            ans += s[i];
+            i++;
+        }
+
+        while (i < n && s[i] == ' ')
+            i++;
+
+        if (i < n)
+            ans += ' ';
+    }
+
+    return ans;
+}
 // permute palindrome: we dont need to find all permutations of string. instead remember: a palindome has:
 // either even count of each character OR even count and exctly one odd count
 // for this problem : we count frequency of each character-->
