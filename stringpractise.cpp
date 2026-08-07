@@ -227,6 +227,27 @@ string removeExtraSpaces(string s) {
 
     return ans;
 }
+// compress string--leetcode 443
+int compress(vector<char>& chars) {
+       int n=chars.size(); 
+       int i=0;
+       int ans=0;
+       while(i<n){
+        char temp=chars[i];
+        int c=0;
+        while(i<n && chars[i]==temp){
+            c++;
+            i++;
+        }
+        chars[ans++]=temp;
+        if(c>1){
+            string count=to_string(c);
+            for(char c:count)
+            chars[ans++]=c;
+        }
+       }
+       return ans;
+    }
 // permute palindrome: we dont need to find all permutations of string. instead remember: a palindome has:
 // either even count of each character OR even count and exctly one odd count
 // for this problem : we count frequency of each character-->
