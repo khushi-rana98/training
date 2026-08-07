@@ -2,6 +2,7 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <stack>
 using namespace std;
 
 // binary operations on strings
@@ -121,6 +122,34 @@ bool isAnagram(string s, string t){
         }
         return ans;
 
+    }
+    // frequncy sort-- 
+    // remember , numbers are sorted based on num if their frequencies are same..--leetcode 1636
+     vector<int> frequencySort(vector<int>& nums) {
+        unordered_map<int,int>mp;
+        // store the frequency of all numbers
+        for(int n:nums)
+        mp[n]++;
+        // sort them into an array so i can sort it later
+        vector<pair<int,int>>ans;
+        for(auto it: mp){
+            ans.push_back(make_pair(it.first,it.second));
+        }
+        // sort them based on frequncy
+        sort(ans.begin(),ans.end(),[](auto&a, auto &b){
+            if(a.second==b.second)
+            return a.first>b.first;
+            return a.second<b.second;
+        });
+        // store the ans in rsultant vector
+        vector<int>result;
+        for(auto it:ans){
+            int num=it.first;
+            int count=it.second;
+            while(count--)
+            result.push_back(num);
+        }
+        return result;
     }
 
 // remove duplicates from string: min laxicographical order
