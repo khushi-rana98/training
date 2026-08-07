@@ -183,6 +183,26 @@ string removeDuplicateLetters(string s) {
         reverse(ans.begin(),ans.end());
         return ans;
     }
+    // detect capitals--leetcode 520
+     bool detectCapitalUse(string word) {
+        int len=0;
+        // counting the length of string
+        for(char c:word){
+            len++;
+        }
+        // count of upperCases
+        int uCount=0;
+        for(char c:word){
+            if(c>='A' && c<='Z')
+                uCount++;
+        }
+        // case 1: no uppercase letter or 
+        // case 2: all uppercase letters
+        if(uCount==0 || uCount==len ) return true;
+        
+        if(uCount==1 && word[0]>='A' && word[0]<='Z') return true;
+        return false;
+    }
 // permute palindrome: we dont need to find all permutations of string. instead remember: a palindome has:
 // either even count of each character OR even count and exctly one odd count
 // for this problem : we count frequency of each character-->
