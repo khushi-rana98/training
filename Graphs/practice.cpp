@@ -4,6 +4,7 @@
 #include <vector>
 #include <queue>
 #include <stack>
+#include <set>
 using namespace std;
 class Graph{
 public:
@@ -224,6 +225,56 @@ void printGraph(){
         }
 
         return st.size();
+    }
+// surrounded regions problem--leetcode 130
+// NOTE: we keep track of safe regions by marking them as 'S' and then see all the regionds connected to them as these are also safe
+// instead of checking all the regions hving 0s in them, go for the boundary one as they are mentioned as safe
+// top row, bottom row, left col, right col. any 0s on them are safe and all 0s connected to them are also safe.
+void dfs(int r, int c, vector<vector<char>>& board ){
+    int tr=board.size();
+    int tc=board[0].size();
+    board[r][c]='S';
+    
+    int x[4]={-1,1,0,0};
+    int y[4]={0,0,-1,1};
+    for(int k=0;k<4;k++){
+        int nr=r+x[k];
+        int nc=c+y[k];
+        if(nr>=0 && nr<tr && nc>=0 && nc<tc && board[nr][nc]=='O')
+        dfs(nr,nc,board);
+    }
+}
+    void solve(vector<vector<char>>& board) {
+        if(board.empty()) return;
+     int r=board.size();//no of rows
+     int c=board[0].size();//no of cols
+    //check top row
+     for(int j=0;j<c;j++){
+        if(board[0][j]=='O' )
+        dfs(0,j,board);
+    } 
+    // check bottom row
+    for(int j=0;j<c;j++){
+        if(board[r-1][j]=='O' )
+        dfs(r-1,j,board);
+    }
+    // check left col
+    for(int i=0;i<r;i++){
+        if(board[i][0]=='O' )
+        dfs(i,0,board);
+    }
+    // check roght col
+    for(int i=0;i<r;i++){
+        if(board[i][c-1]=='O' )
+        dfs(i,c-1,board);
+    }
+    // traverse the whole board now
+    for(int i=0;i<r;i++){
+        for(int j=0;j<c;j++){
+            if(board[i][j]=='S') board[i][j]='O';
+            else if(board[i][j]=='O') board[i][j]='X';
+        }
+    }
     }
     // flood fill problem--important interview question
     void dfs(int r, int c, vector<vector<bool>>&visited,vector<vector<int>>& image, int o_color, int color){
