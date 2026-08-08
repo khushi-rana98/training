@@ -136,7 +136,8 @@ void printGraph(){
         }
         return count;
     }
-    // NO. OF PROVINCES PROBLEM
+
+    // NO. OF PROVINCES PROBLEM---leetcode 547 --connected components
      void dfs(vector<int>&visited,int node, vector<vector<int>>&isConnected){
         visited[node]=1;
         for(int neigh=0;neigh<isConnected.size();neigh++){
@@ -156,6 +157,73 @@ void printGraph(){
         
        }
        return provinces;
+    }
+    // extension of number of islands problem==total distinct islands
+     void dfs(int r, int c,
+             vector<vector<int>>& grid,
+             vector<vector<int>>& visited,
+             vector<pair<int,int>>& shape,
+             int base_row,
+             int base_col)
+    {
+        int t_rows = grid.size();
+        int t_cols = grid[0].size();
+
+        visited[r][c] = 1;
+
+        shape.push_back({r - base_row, c - base_col});
+
+        int x[4] = {-1, 1, 0, 0};
+        int y[4] = {0, 0, -1, 1};
+
+        for(int k = 0; k < 4; k++)
+        {
+            int nr = r + x[k];
+            int nc = c + y[k];
+
+            if(nr >= 0 &&
+               nr < t_rows &&
+               nc >= 0 &&
+               nc < t_cols &&
+               !visited[nr][nc] &&
+               grid[nr][nc] == 1)
+            {
+                dfs(nr, nc, grid, visited,
+                    shape, base_row, base_col);
+            }
+        }
+    }
+
+    int countDistinctIslands(vector<vector<int>>& grid)
+    {
+        int r = grid.size();
+        int c = grid[0].size();
+
+        vector<vector<int>> visited(r,
+                                    vector<int>(c, 0));
+
+        set<vector<pair<int,int>>> st;
+
+        for(int i = 0; i < r; i++)
+        {
+            for(int j = 0; j < c; j++)
+            {
+                if(!visited[i][j] &&
+                   grid[i][j] == 1)
+                {
+                    vector<pair<int,int>> shape;
+
+                    dfs(i, j, grid,
+                        visited,
+                        shape,
+                        i, j);
+
+                    st.insert(shape);
+                }
+            }
+        }
+
+        return st.size();
     }
     // flood fill problem--important interview question
     void dfs(int r, int c, vector<vector<bool>>&visited,vector<vector<int>>& image, int o_color, int color){
